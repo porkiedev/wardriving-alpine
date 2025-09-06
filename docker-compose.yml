@@ -1,8 +1,14 @@
 services:
     kismet:
-        stdin_open: true
-        tty: true
         privileged: true
         network_mode: host
         pid: host
-        image: finchsec/kismet
+        image: porkiedev/kismet
+        command: ["/usr/local/bin/kismet", "--no-ncurses-wrapper", "--config-file", "/data-kismet/config/kismet.conf", "--log-prefix", "/data-kismet/output", "--homedir", "/data-kismet/home", "--confdir", "/data-kismet/config", "--override", "wardrive"]
+#        devices:
+#          - /dev/net/tun
+#        cap_add:
+#          - NET_ADMIN
+#          - NET_RAW
+        volumes:
+          - ./data-kismet:/data-kismet
