@@ -5,10 +5,6 @@ services:
         pid: host
         image: porkiedev/kismet
         command: ["/usr/local/bin/kismet", "--no-ncurses-wrapper", "--config-file", "/data-kismet/config/kismet.conf", "--log-prefix", "/data-kismet/output", "--homedir", "/data-kismet/home", "--confdir", "/data-kismet/config", "--override", "wardrive"]
-#        devices:
-#          - /dev/net/tun
-#        cap_add:
-#          - NET_ADMIN
-#          - NET_RAW
+        restart: unless-stopped
         volumes:
           - ./data-kismet:/data-kismet
